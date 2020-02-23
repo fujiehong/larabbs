@@ -6,14 +6,20 @@ class Topic extends Model
 {
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
+    //一个话题只属于一个分类。
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
+    //一个话题只有一个作者。
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    //一个话题拥有多个回复。
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
 
