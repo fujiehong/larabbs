@@ -12,9 +12,9 @@ class ReplyPolicy extends Policy
         // return $reply->user_id == $user->id;
         return true;
     }
-
+    //应当是"回复的作者"或者"回复话题的作者"
     public function destroy(User $user, Reply $reply)
     {
-        return true;
+        return $reply->user_id == $user->id || $user->id==$reply->topic->user_id;
     }
 }

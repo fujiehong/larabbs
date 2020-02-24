@@ -88,4 +88,10 @@ class TopicsController extends Controller
         }
         return $data;
     }
+
+    public function updateReplyCount()
+    {
+        $this->reply_count = $this->replies->count();
+        $this->save();
+    }
 }

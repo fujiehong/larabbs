@@ -44,4 +44,9 @@ class TopicObserver
             dispatch(new TranslateSlug($topic));
         }
     }
+    //文章删除，则连带触发删除关于此文章的回复。
+    public function deleted(Topic $topic)
+    {
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+    }
 }

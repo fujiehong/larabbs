@@ -29,4 +29,11 @@ class ReplyObserver
         //在用户回复创建数据后，触发通知话题作者有新的评论
         $reply->topic->user->notify(new TopicReplied($reply));
     }
+
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->updateReplyCount();
+
+    }
+
 }
